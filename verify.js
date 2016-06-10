@@ -14,7 +14,7 @@ console.log("hi");
     var timestamp = req.query.timestamp;
     var nonce = req.query.nonce;
     var echostr = req.query.echostr;
-    var cryptor = new WXBizMsgCrypt(config.token, config.encodingAESKey, config.corpId)
+    var cryptor = new WXBizMsgCrypt(config.token, config.encodingAESKey, config.corpId);
     var s = cryptor.decrypt(echostr);
     res.send(s.message);
 });
