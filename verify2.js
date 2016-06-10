@@ -1,5 +1,5 @@
 var express = require('express');
-var WXBizMsgCrypt = require('./lib/WXUtils');
+var WXBizMsgCrypt = require('./lib/WXUtil.js');
 
 var config = {
     token:'JiCTLRjtUNh9PuPt1no1wCQML1rm',
