@@ -39,8 +39,8 @@ function verifyURL(msgSignature,timeStamp,nonce,echoStr){
     if(config.encodingAESKey.length != 43){
         errCode = -40004;
     }
-    var b = new Buffer(config.encodingAESKey+"=", 'base64');
-    var aesKey = b.toString();
+    var aesKey = new Buffer(config.encodingAESKey+"=", 'base64');
+    //var aesKey = b.toString();
     AESKeyy = aesKey;
     console.log('aesKey:  '+aesKey);
     var key = [config.token,timeStamp,nonce,echoStr].sort().join('');
