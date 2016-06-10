@@ -18,6 +18,9 @@
   "homepage": "https://github.com/mdyoyo/HealthyDiet#readme",
   "dependencies": {
     "crypto": "0.0.3",
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "fs": "0.0.2",
+    "https": "^1.0.0",
+    "later": "^1.2.0"
   }
 }
