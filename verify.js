@@ -1,5 +1,5 @@
 var express = require('express');
-var WXBizMsgCrypt = require('wechat-crypto');
+var WXBizMsgCrypt = require('wechat-enterprise');
 
 var config = {
     token:'HstHOMAgMci9qtBu2zirJ',
