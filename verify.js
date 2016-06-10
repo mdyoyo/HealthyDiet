@@ -6,6 +6,8 @@ var config = {
     encodingAESKey:'ThTmIVioex7wf8m4BnrIMe3d1LfHczHMh53dV1WHlLq',
     corpId:'wx1d3765eb45497a18'
 };
+
+var AESKeyy;
 var app = express();
 
 app.get('/wxservice',function(req,res){
@@ -21,7 +23,7 @@ console.log("hi");
 //    var cryptor = new WXBizMsgCrypt(config.token, config.encodingAESKey, config.corpId);
     var errCode = verifyURL(msg_signature,timestamp,nonce,echostr);
     if(errCode === 0){
-        var s = decrypt(echostr);
+        var s = decrypt(echostr,AESKeyy);
         res.send(s.message);
     }else{
         res.end('fail');
@@ -39,6 +41,7 @@ function verifyURL(msgSignature,timeStamp,nonce,echoStr){
     }
     var b = new Buffer(config.encodingAESKey+"=", 'base64');
     var aesKey = b.toString();
+    AESKeyy = aesKey;
     console.log('aesKey:  '+aesKey);
     var key = [config.token,timeStamp,nonce,echoStr].sort().join('');
     var sha1 = crypto.createHash('sha1');
@@ -51,9 +54,9 @@ function verifyURL(msgSignature,timeStamp,nonce,echoStr){
     }
     return errCode;
 }
-function decrypt(text) {
+function decrypt(text,AESKey) {
     // 创建解密对象，AES采用CBC模式，数据采用PKCS#7填充；IV初始向量大小为16字节，取AESKey前16字节
-    var decipher = crypto.createDecipheriv('aes-256-cbc', this.key, this.iv);
+    var decipher = crypto.createDecipheriv('aes-256-cbc', AESKey, AESKey.slice(0, 16));
     decipher.setAutoPadding(false);
     var deciphered = Buffer.concat([decipher.update(text, 'base64'), decipher.final()]);
 
@@ -68,3 +71,21 @@ function decrypt(text) {
         id: content.slice(length + 4).toString()
     };
 }
+/**
+ * 提供基于PKCS7算法的加解密接口
+ */
+var PKCS7Encoder = {};
+
+/**
+ * 删除解密后明文的补位字符
+ text 解密后的明文
+ */
+PKCS7Encoder.decode = function (text) {
+    var pad = text[text.length - 1];
+
+    if (pad < 1 || pad > 32) {
+        pad = 0;
+    }
+
+    return text.slice(0, text.length - pad);
+};
