@@ -1,0 +1,22 @@
+{
+  "name": "healthy_diet",
+  "version": "1.0.0",
+  "description": "合理饮食，健康吃出来。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mdyoyo/HealthyDiet.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mdyoyo/HealthyDiet/issues"
+  },
+  "homepage": "https://github.com/mdyoyo/HealthyDiet#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
