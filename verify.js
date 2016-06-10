@@ -1,6 +1,6 @@
 var express = require('express');
 //var WXBizMsgCrypt = require('./lib/WXUtils');
-
+var crypto = require('crypto');
 var config = {
     token:'JiCTLRjtUNh9PuPt1no1wCQML1rm',
     encodingAESKey:'ThTmIVioex7wf8m4BnrIMe3d1LfHczHMh53dV1WHlLq',
@@ -41,7 +41,7 @@ function verifyURL(msgSignature,timeStamp,nonce,echoStr){
     var aesKey = b.toString();
     console.log('aesKey:  '+aesKey);
     var key = [config.token,timeStamp,nonce,echoStr].sort().join('');
-    var sha1 = require('crypto').createHash('sha1');
+    var sha1 = crypto.createHash('sha1');
     sha1.update(key);
 
     if(sha1.digest('hex') == msgSignature){
