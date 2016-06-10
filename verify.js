@@ -2,13 +2,14 @@ var express = require('express');
 var WXBizMsgCrypt = require('wechat-enterprise');
 
 var config = {
-    token:'HstHOMAgMci9qtBu2zirJ',
-    encodingAESKey:'wnL0dwXTm8R9zT2GM8xUvPfohjWGHfVp3glagC9zwSB',
+    token:'JiCTLRjtUNh9PuPt1no1wCQML1rm',
+    encodingAESKey:'ThTmIVioex7wf8m4BnrIMe3d1LfHczHMh53dV1WHlLq',
     corpId:'wx1d3765eb45497a18'
 };
 var app = express();
 
 app.get('/wxservice',function(req,res){
+console.log("hi");
     var msg_signature = req.query.msg_signature;
     var timestamp = req.query.timestamp;
     var nonce = req.query.nonce;
