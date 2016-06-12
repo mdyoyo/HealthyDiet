@@ -37,11 +37,13 @@ function checkSignature(params){
 var server = http.createServer(function(req,res){
     var query = url.parse(req.url).query;//?后面的内容
     var params = qs.parse(query);
-
+    var echostr = params.echostr;
     var cryptor = new WXBizMsgCrypt(config.token, config.encodingAESKey, config.corpId);
-    var errCode = cryptor.verifyURL(params.msg_signature,params.timeStamp,params.nonce,params.echostr);
+    var errCode = cryptor.verifyURL(params.msg_signature,params.timeStamp,params.nonce,echostr);
     if(errCode === 0){
-        var s = cryptor.decrypt(params.echostr);//解析出明文
+        console.log("echostr  "+echostr);
+        var s = cryptor.decrypt(echostr);//解析出明文
+        console.log(s);
         res.send(s.message);
     }
     else{
