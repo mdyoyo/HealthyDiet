@@ -40,7 +40,7 @@ var server = http.createServer(function(req,res){
     console.log(params);
     var echostr = params.echostr;
     var cryptor = new WXBizMsgCrypt(config.token, config.encodingAESKey, config.corpId);
-    var errCode = cryptor.verifyURL(params.msg_signature,params.timeStamp,params.nonce,echostr);
+    var errCode = cryptor.verifyURL(params.msg_signature,params.timestamp,params.nonce,echostr);
     console.log(errCode);
     if(errCode === 0){
         console.log("echostr  "+echostr);
