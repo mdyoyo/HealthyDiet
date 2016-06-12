@@ -20,7 +20,7 @@ console.log("hi");
     var cryptor = new WXBizMsgCrypt(config.token, config.encodingAESKey, config.corpId);
     var errCode = cryptor.verifyURL(msg_signature,timestamp,nonce,echostr);
     if(errCode === 0){
-        var s = cryptor.decrypt(echostr);
+        var s = cryptor.decrypt(echostr);//解析出明文
         res.send(s.message);
     }else{
         res.end('fail');
