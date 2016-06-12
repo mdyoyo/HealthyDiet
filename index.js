@@ -76,7 +76,7 @@ var server = http.createServer(function(req,res){
                     var cryptor = new WXBizMsgCrypt(config.token, config.encodingAESKey, config.corpId);
                     var dev_msg_signature = cryptor.getSignature(params.timestamp,params.nonce,msg_encrypt);
                     console.log(dev_msg_signature);
-                    console.log(params,msg_signature);
+                    console.log(params.msg_signature);
                     if(dev_msg_signature == params.msg_signature){
                         //验证通过 解密msg_encrypt
                         var de_result = cryptor.decrypt(msg_encrypt);
