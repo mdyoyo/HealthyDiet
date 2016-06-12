@@ -61,10 +61,10 @@ var server = http.createServer(function(req,res){
     }
     else{//post请求，微信发给开发者服务器
         var postdata = "";
-        request.addListener("data",function(postchunk){
+        req.addListener("data",function(postchunk){
             postdata += postchunk;
         });
-        request.addListener("end",function(){
+        req.addListener("end",function(){
             var parseString = require('xml2js').parseString;
             parseString(postdata, function(err,result){
                 if(!err){
