@@ -69,10 +69,34 @@ var server = http.createServer(function(req,res){
             parseString(postdata, function(err,result){
                 if(!err){
                     console.log(result);
+                    var toUser = result.xml.ToUserName[0];
+                    var msg_encrypt = result.xml.Encrypt[0];
+                    var toAgentID = result.xml.AgentID[0];
+                    //验证signature
+                    var cryptor = new WXBizMsgCrypt(config.token, config.encodingAESKey, config.corpId);
+                    var dev_msg_signature = cryptor.getSignature(params.timestamp,params.nonce,msg_encrypt);
+                    console.log(dev_msg_signature);
+                    console.log(params,msg_signature);
+                    if(dev_msg_signature == params.msg_signature){
+                        //验证通过 解密msg_encrypt
+                        var de_result = cryptor.decrypt(msg_encrypt);
+                        console.log(de_result);
+                    }else{
+                        res.end('signature fail');
+                    }
                 }
             });
         });
     }
+    /*
+     { msg_signature: 'd800f42142818c5c3a6ffcedb2d392406aa6a413',
+     timestamp: '1465744965',
+     nonce: '1766896560' }
+     { xml:
+     { ToUserName: [ 'wx1d3765eb45497a18' ],
+     Encrypt: [ '3jHkncSdZE7W+HvGd9bXTF1SCyjVv+Y376W18/0/2TlnRhRw/JfF9WNkl2HPbmJkElYUGV+mBIzi3HJcLO5D81BmgzKeV53dnOR8pxvLM7P9is73S634pBrKMxcRyJOq2bkWKKou0Y3LNQS/tv9p6nRmLHODVbvW5+DODG3e9WORx+B9jdnJlLIl+1XBXf+gbIsP4YI45qUmYpiCV9vLmEwFo/N0oP8bvJv+SsEewIVdTgbppunSoI4UznSrTATcCBxlA+MW0lgqLZ3YjTcW18qWzDVzrVSXFkG6bU2LwU9U0cB0yi7dycAE1ctWGL7OYqojnMYWdzHfkWu+D4RddwFH2r484IGDtf/j6ZH9/Y5/2kjhs8mm/kdbqexj9KQ5BnAQyrdwJ1w+QnX3C4jrsG/MMKSdPh0RKeGXjE20aHZPO9E0TUkYSTznpLu+Y5AuFYfZHB5ElNul6VeNSti9TQ==' ],
+     AgentID: [ '51' ] } }
+     */
 
 });
 server.listen(1338);
