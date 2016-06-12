@@ -37,19 +37,35 @@ function checkSignature(params){
 var server = http.createServer(function(req,res){
     var query = url.parse(req.url).query;//?后面的内容
     var params = qs.parse(query);
-    console.log(params);
+    /**params内容：
+     * { msg_signature: '7093f89c7814f06ebf29b5d38d598101341ceb0a',
+        timestamp: '1465734386',
+        nonce: '1055659467',
+        echostr: 'AKIyN3y9rLyAilMhDVsJruPTAjMGH/SpG/zlUFd+lZmOotmPcvoZJ8Gu4WEo386X5/K94kCLLSUovSyllbGqbA==' }
+     */
     var echostr = params.echostr;
     var cryptor = new WXBizMsgCrypt(config.token, config.encodingAESKey, config.corpId);
     var errCode = cryptor.verifyURL(params.msg_signature,params.timestamp,params.nonce,echostr);
     console.log(errCode);
-    if(errCode === 0){
-        console.log("echostr  "+echostr);
-        var s = cryptor.decrypt(echostr);//解析出明文
-        console.log(s);
-        res.end(s.message);
+    //if(errCode === 0){
+    //    /**
+    //     * { message: '3617532078790236155', id: 'wx1d3765eb45497a18' }
+    //     */
+    //    var s = cryptor.decrypt(echostr);//解析出明文
+    //    res.end(s.message);
+    //}
+    //else{
+    //    res.end('fail');
+    //}
+    if(errCode != 0){
+        res.end(fail);
     }
-    else{
-        res.end('fail');
+    if(req.method == "GET"){
+        /**
+         * { message: '3617532078790236155', id: 'wx1d3765eb45497a18' }
+         */
+        var s = cryptor.decrypt(echostr);//解析出明文
+        res.end(s.message);
     }
     //if(!checkSignature(params,config.token)){
     //    response.end('校验失败');
@@ -74,7 +90,7 @@ var server = http.createServer(function(req,res){
     //}
 
 });
-server.listen(1338);
+server.listen(1337);
 console.log('server running at port 1338');
 
 
