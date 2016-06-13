@@ -157,8 +157,8 @@ var server = http.createServer(function(req,res){
                                             console.log(err);
                                         }else{
                                             console.log(foods);
-                                            var replyText;
-                                            if(foods){
+                                            var replyText="";
+                                            if(foods.length>0){
                                                 var count = foods.length;
                                                 for(var i=0; i<count; i++){
                                                     replyText += foods[i].title+"\n"+foods[i].calory+"\n";
