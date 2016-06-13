@@ -157,7 +157,12 @@ var server = http.createServer(function(req,res){
                                             console.log(err);
                                         }else{
                                             console.log(food);
-                                            var replyText = food.title+"\n"+food.calory;
+                                            var replyText;
+                                            if(food){
+                                                replyText = food.title+"\n"+food.calory;
+                                            }else{
+                                                replyText = "抱歉，食物库中还未收录此食物哦~"
+                                            }
                                             var reply_xml_tmp = replyTextToUSer_mw(de_result_xml, replyText);
                                             console.log(reply_xml_tmp);
                                             //加密xml,生成签名，在生成一个xml,返回给微信
