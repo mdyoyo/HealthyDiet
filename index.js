@@ -85,25 +85,25 @@ var server = http.createServer(function(req,res){
                         var de_result_m = de_result.message;
                         parseString(de_result_m,function(err,de_result_xml){
 //                            console.log(de_result_xml);
-                            var toUserName = de_result_xml.ToUserName[0];
-                            var fromUserName =  de_result_xml.FromUserName[0];
-                            var agentId =  de_result_xml.AgentID[0];
+                            var toUserName = de_result_xml.xml.ToUserName[0];
+                            var fromUserName =  de_result_xml.xml.FromUserName[0];
+                            var agentId =  de_result_xml.xml.AgentID[0];
                             //event或者text/image/voice/video/shortvideo/location/link
-                            var msgType = de_result_xml.MsgType[0];
+                            var msgType = de_result_xml.xml.MsgType[0];
                             if(msgType === 'event'){
                                 console.log("收到事件");
                                 //事件类型
-                                var eventType = de_result_xml.Event[0];
+                                var eventType = de_result_xml.xml.Event[0];
                                 if(eventType === 'click'){
                                     console.log("点击菜单拉取消息事件");
                                     //事件KEY值，与自定义菜单接口中KEY值对应
-                                    var eventKey =  de_result_xml.EventKey[0];
+                                    var eventKey =  de_result_xml.xml.EventKey[0];
                                     //TODO 根据eventKey的值返回给用户不同的消息~
 
                                 }else if(eventType === 'view'){
                                     console.log("点击菜单跳转链接事件");
                                     //事件KEY值，设置的跳转URL
-                                    var eventKey_url =  de_result_xml.EventKey[0];
+                                    var eventKey_url =  de_result_xml.xml.EventKey[0];
                                     //TODO 还不知道要做什么~或许可以放一些相关网站？
 
                                 }else if(eventType ==='subscribe'){
@@ -120,7 +120,7 @@ var server = http.createServer(function(req,res){
                                 console.log("收到普通消息");//text/image/voice/video/shortvideo/locationlink
                                 if(msgType === 'text'){
                                     console.log("收到文本消息啦");
-                                    var content = de_result_xml.Content[0];
+                                    var content = de_result_xml.xml.Content[0];
                                     //TODO 根据content返回相应的热量, 查询数据库吧~~
                                     var reply_xml_tmp = replyTextToUSer_mw(de_result_xml, content);
                                     //加密xml,生成签名，在生成一个xml,返回给微信
