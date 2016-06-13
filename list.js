@@ -9,31 +9,61 @@ var request = require('request');
     var options2 = {
         headers: {"Connection": "close"},
         url: 'https://qyapi.weixin.qq.com/cgi-bin/menu/create?' +
-        'access_token=Jq8p-Cv1toqFuzep09a-xwhP3hApKL6HFzWLy5u4Z8m-ADB2g90gCqLrs9016Gz3' +
+        'access_token=cWQUFhDuLpcB-CP-fbgZvezcwfSTzqDxo5K_qCQKhZTFmrOQ02TSBClIGzqDFSx-' +
         '&agentid=51',
         method: 'POST',
         json: true,//请求和回发的数据自动转变成了 json 对象
         body: {
             "button": [
                 {
-                    "type": "click",
-                    "name": "番茄炒蛋",
-                    "key": "V1001_TODAY_MUSIC"
-                },
-                {
-                    "name": "二",
-                    "sub_button": [
+                    "name": "四季食谱",
+                    "sub_button":[
                         {
-                            "type": "view",
-                            "name": "二级菜单",
-                            "url": "http://www.soso.com/" //跳转链接
+                            "type":"click",
+                            "name":"春",
+                            "key":"V1001"
                         },
                         {
-                            "type": "click",
-                            "name": "22",
-                            "key": "V12"
+                            "type":"click",
+                            "name":"夏",
+                            "key":"V1002"
+                        },
+                        {
+                            "type":"click",
+                            "name":"秋",
+                            "key":"V1003"
+                        },
+                        {
+                            "type":"click",
+                            "name":"冬",
+                            "key":"V1004"
                         }
                     ]
+                },
+                {
+                    "name": "小贴士",
+                    "sub_button": [
+                        {
+                            "type":"view",
+                            "name":"15种果蔬汁",
+                            "url":"http://www.meishij.net/meirong/15zhongmeiweiguozhiqingchanggengjianfei.html"
+                        },
+                        {
+                            "type": "view",
+                            "name": "11种减肥食物",
+                            "url": "http://www.meishij.net/meirong/jianfeishipupandian11zhongchaozanguayoushiwu.html" //跳转链接
+                        },
+                        {
+                            "type": "view",
+                            "name": "6款减肥餐",
+                            "url": "http://www.meishij.net/meirong/6kuanzuiremenkuaisujianfeishipu.html"
+                        }
+                    ]
+                },
+                {
+                    "type": "click",
+                    "name": "使用指南",
+                    "key": "V3"
                 }
             ]
         }

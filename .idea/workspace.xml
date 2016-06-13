@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ff71784e-b5ff-43f0-bd8c-f3699205ebcc" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.js" afterPath="$PROJECT_DIR$/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/list.js" afterPath="$PROJECT_DIR$/list.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/reply.js" afterPath="$PROJECT_DIR$/lib/reply.js" />
     </list>
     <ignored path="HealthyDiet.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,18 +28,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.43185842">
-              <caret line="160" column="61" selection-start-line="160" selection-start-column="61" selection-end-line="160" selection-end-column="61" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="food_model.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/food_model.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+            <state vertical-scroll-proportion="-1.7840708">
+              <caret line="110" column="68" selection-start-line="110" selection-start-column="68" selection-end-line="110" selection-end-column="68" />
               <folding />
             </state>
           </provider>
@@ -47,7 +39,7 @@
         <entry file="file://$PROJECT_DIR$/lib/reply.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="43" column="24" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
+              <caret line="116" column="69" selection-start-line="115" selection-start-column="6" selection-end-line="116" selection-end-column="69" />
               <folding />
             </state>
           </provider>
@@ -68,11 +60,11 @@
         <option value="$PROJECT_DIR$/verify.js" />
         <option value="$PROJECT_DIR$/lib/config.js" />
         <option value="$PROJECT_DIR$/lib/WXUtil.js" />
-        <option value="$PROJECT_DIR$/list.js" />
         <option value="$PROJECT_DIR$/model/models.js" />
         <option value="$PROJECT_DIR$/receive_event.js" />
         <option value="$PROJECT_DIR$/saveToDB.js" />
         <option value="$PROJECT_DIR$/model/food_model.js" />
+        <option value="$PROJECT_DIR$/list.js" />
         <option value="$PROJECT_DIR$/lib/reply.js" />
         <option value="$PROJECT_DIR$/index.js" />
       </list>
@@ -86,7 +78,7 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="111" />
+    <option name="x" value="104" />
     <option name="y" value="23" />
     <option name="width" value="1132" />
     <option name="height" value="709" />
@@ -233,7 +225,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="111" y="23" width="1132" height="709" extended-state="0" />
+    <frame x="104" y="23" width="1132" height="709" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288364" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -515,14 +507,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/list.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="51" column="4" selection-start-line="47" selection-start-column="2" selection-end-line="51" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/food_model.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -531,18 +515,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/reply.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="24" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
+          <caret line="116" column="69" selection-start-line="115" selection-start-column="6" selection-end-line="116" selection-end-column="69" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43185842">
-          <caret line="160" column="61" selection-start-line="160" selection-start-column="61" selection-end-line="160" selection-end-column="61" />
+        <state vertical-scroll-proportion="-1.7840708">
+          <caret line="110" column="68" selection-start-line="110" selection-start-column="68" selection-end-line="110" selection-end-column="68" />
           <folding />
         </state>
       </provider>
