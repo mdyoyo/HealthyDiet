@@ -150,7 +150,7 @@ var server = http.createServer(function(req,res){
                                     //TODO 根据content返回相应的热量, 查询数据库吧~~
                                     var query = {};
                   //                  var pattern = new RegExp("^.*"+content+".*$");
-                                    query.foodname = new RegExp("^.*"+content+".*$");
+                                    query.title = new RegExp("^.*"+content+".*$");
                                     //query['foodname'] = new RegExp(content);
                                     Food.findOne(query,function(err,food){
                                         if(err){

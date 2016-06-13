@@ -2,7 +2,7 @@ var mongoose=require('mongoose');
 var Schema = mongoose.Schema;
 
 var foodDataSchema=new Schema({
-  foodname:String,
+  title:String,
   calory:String,
   detail:String,
   img:String
