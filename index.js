@@ -101,7 +101,7 @@ var server = http.createServer(function(req,res){
                                     //事件KEY值，与自定义菜单接口中KEY值对应
                                     var eventKey =  de_result_xml.xml.EventKey[0];
                                     //TODO 根据eventKey的值返回给用户不同的消息~
-                                    if(eventKey === 'V1001'){
+                                    if(eventKey === 'V1001_TODAY_MUSIC'){
                                         var reply_xml_tmp = replyArticlesToClick(1,de_result_xml);
                                         console.log(reply_xml_tmp);
                                         //加密xml,生成签名，在生成一个xml,返回给微信
@@ -110,7 +110,7 @@ var server = http.createServer(function(req,res){
                                         var result_replyToWechat = replyXMLToWechat(msg_encypt,msg_signature,params.timestamp,params.nonce);
                                         res.end(result_replyToWechat);
                                     }
-                                    else if(eventKey === 'V1002'){
+                                    else if(eventKey === 'V12'){
                                         var reply_xml_tmp = replyArticlesToClick(1,de_result_xml);
                                         console.log(reply_xml_tmp);
                                         //加密xml,生成签名，在生成一个xml,返回给微信
