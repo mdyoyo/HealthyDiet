@@ -1,12 +1,13 @@
 var later = require('later');
 var https = require('https');
 var fs = require('fs');
-var crypto = require('crypto');
 
 var http = require('http');
 var url = require('url');
 var qs = require('qs');//url参数字符串和参数对象的转换
 
+var replyTextToUSer_mw = require('./lib/reply.js').replyTextToUSer_mw;
+var replyXMLToWechat = require('./lib/reply.js').replyXMLToWechat;
 var WXBizMsgCrypt = require('./lib/WXUtil.js');
 var corpId = require('./lib/config').corpID;
 var corpSecret = require('./lib/config').corpSecret;
@@ -75,16 +76,64 @@ var server = http.createServer(function(req,res){
                     //验证signature
                     var cryptor = new WXBizMsgCrypt(config.token, config.encodingAESKey, config.corpId);
                     var dev_msg_signature = cryptor.getSignature(params.timestamp,params.nonce,msg_encrypt);
-                    console.log(dev_msg_signature);
-                    console.log(params.msg_signature);
+                    //console.log(dev_msg_signature);
+                    //console.log(params.msg_signature);
                     if(dev_msg_signature == params.msg_signature){
                         //验证通过 解密msg_encrypt
                         var de_result = cryptor.decrypt(msg_encrypt);
-                        console.log(de_result);
+//                        console.log(de_result);
                         var de_result_m = de_result.message;
                         parseString(de_result_m,function(err,de_result_xml){
-                            console.log("hihihihi");
-                            console.log(de_result_xml);
+//                            console.log(de_result_xml);
+                            var toUserName = de_result_xml.ToUserName[0];
+                            var fromUserName =  de_result_xml.FromUserName[0];
+                            var agentId =  de_result_xml.AgentID[0];
+                            //event或者text/image/voice/video/shortvideo/location/link
+                            var msgType = de_result_xml.MsgType[0];
+                            if(msgType === 'event'){
+                                console.log("收到事件");
+                                //事件类型
+                                var eventType = de_result_xml.Event[0];
+                                if(eventType === 'click'){
+                                    console.log("点击菜单拉取消息事件");
+                                    //事件KEY值，与自定义菜单接口中KEY值对应
+                                    var eventKey =  de_result_xml.EventKey[0];
+                                    //TODO 根据eventKey的值返回给用户不同的消息~
+
+                                }else if(eventType === 'view'){
+                                    console.log("点击菜单跳转链接事件");
+                                    //事件KEY值，设置的跳转URL
+                                    var eventKey_url =  de_result_xml.EventKey[0];
+                                    //TODO 还不知道要做什么~或许可以放一些相关网站？
+
+                                }else if(eventType ==='subscribe'){
+                                    console.log("成员关注事件");
+                                    //TODO "hi，欢迎你关注哦~"
+
+                                }else if(eventType ==='unsubscribe'){
+                                    console.log("成员取消关注事件");
+                                }else{
+                                    console.log("其他事件");
+                                }
+                            }
+                            else{
+                                console.log("收到普通消息");//text/image/voice/video/shortvideo/locationlink
+                                if(msgType === 'text'){
+                                    console.log("收到文本消息啦");
+                                    var content = de_result_xml.Content[0];
+                                    //TODO 根据content返回相应的热量, 查询数据库吧~~
+                                    var reply_xml_tmp = replyTextToUSer_mw(de_result_xml, content);
+                                    //加密xml,生成签名，在生成一个xml,返回给微信
+                                    var msg_encypt = cryptor.encrypt(reply_xml_tmp);
+                                    var msg_signature = cryptor.getSignature(params.timestamp,params.nonce,msg_encypt);
+                                    var result_replyToWechat = replyXMLToWechat(msg_encypt,msg_signature,params.timestamp,params.nonce);
+                                    console.log("回复文本消息啦");
+                                    console.log(result_replyToWechat);
+                                    res.end(result_replyToWechat);
+                                }else{
+                                    console.log("收到不是文本的消息啦");
+                                }
+                            }
                         });
                         /**
                          * { message:
@@ -98,6 +147,15 @@ var server = http.createServer(function(req,res){
                          *     <EventKey><![CDATA[V1001_TODAY_MUSIC]]></EventKey>\n
                          * </xml>',
                          * id: 'wx1d3765eb45497a18' }
+                         * xml2js之后：
+                         * { xml:
+                               { ToUserName: [ 'wx1d3765eb45497a18' ],
+                                 FromUserName: [ '1501210994' ],
+                                 CreateTime: [ '1465782122' ],
+                                 MsgType: [ 'event' ],
+                                 AgentID: [ '51' ],
+                                 Event: [ 'view' ],
+                                 EventKey: [ 'http://www.soso.com/' ] } }
                          */
 
                     }else{
