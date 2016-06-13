@@ -17,8 +17,8 @@ function createList() {
             "button": [
                 {
                     "type": "click",
-                    "name": "一级菜单",
-                    "key": "V1001_TODAY_MUSIC"
+                    "name": "番茄炒蛋",
+                    "key": "V1001"
                 },
                 {
                     "name": "二",
@@ -30,8 +30,8 @@ function createList() {
                         },
                         {
                             "type": "click",
-                            "name": "22",
-                            "key": "V12"
+                            "name": "番茄炒蛋",
+                            "key": "V1002"
                         }
                     ]
                 }

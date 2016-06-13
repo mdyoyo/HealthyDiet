@@ -101,13 +101,24 @@ var server = http.createServer(function(req,res){
                                     //事件KEY值，与自定义菜单接口中KEY值对应
                                     var eventKey =  de_result_xml.xml.EventKey[0];
                                     //TODO 根据eventKey的值返回给用户不同的消息~
-                                    var reply_xml_tmp = replyArticlesToClick(1,de_result_xml);
-                                    console.log(reply_xml_tmp);
-                                    //加密xml,生成签名，在生成一个xml,返回给微信
-                                    var msg_encypt = cryptor.encrypt(reply_xml_tmp);
-                                    var msg_signature = cryptor.getSignature(params.timestamp,params.nonce,msg_encypt);
-                                    var result_replyToWechat = replyXMLToWechat(msg_encypt,msg_signature,params.timestamp,params.nonce);
-                                    res.end(result_replyToWechat);
+                                    if(eventKey === 'V1001'){
+                                        var reply_xml_tmp = replyArticlesToClick(1,de_result_xml);
+                                        console.log(reply_xml_tmp);
+                                        //加密xml,生成签名，在生成一个xml,返回给微信
+                                        var msg_encypt = cryptor.encrypt(reply_xml_tmp);
+                                        var msg_signature = cryptor.getSignature(params.timestamp,params.nonce,msg_encypt);
+                                        var result_replyToWechat = replyXMLToWechat(msg_encypt,msg_signature,params.timestamp,params.nonce);
+                                        res.end(result_replyToWechat);
+                                    }
+                                    else if(eventKey === 'V1002'){
+                                        var reply_xml_tmp = replyArticlesToClick(1,de_result_xml);
+                                        console.log(reply_xml_tmp);
+                                        //加密xml,生成签名，在生成一个xml,返回给微信
+                                        var msg_encypt = cryptor.encrypt(reply_xml_tmp);
+                                        var msg_signature = cryptor.getSignature(params.timestamp,params.nonce,msg_encypt);
+                                        var result_replyToWechat = replyXMLToWechat(msg_encypt,msg_signature,params.timestamp,params.nonce);
+                                        res.end(result_replyToWechat);
+                                    }
 
                                 }else if(eventType === 'view'){
                                     console.log("点击菜单跳转链接事件");
