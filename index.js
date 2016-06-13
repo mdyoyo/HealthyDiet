@@ -152,14 +152,18 @@ var server = http.createServer(function(req,res){
                   //                  var pattern = new RegExp("^.*"+content+".*$");
                                     query.title = new RegExp("^.*"+content+".*$");
                                     //query['foodname'] = new RegExp(content);
-                                    Food.findOne(query,function(err,food){
+                                    Food.find(query,function(err,foods){
                                         if(err){
                                             console.log(err);
                                         }else{
-                                            console.log(food);
+                                            console.log(foods);
                                             var replyText;
-                                            if(food){
-                                                replyText = food.title+"\n"+food.calory;
+                                            if(foods){
+                                                var count = foods.length;
+                                                for(var i=0; i<count; i++){
+                                                    replyText += foods[i].title+"\n"+foods[i].calory+"\n";
+                                                }
+                                                //replyText = food.title+"\n"+food.calory;
                                             }else{
                                                 replyText = "抱歉，食物库中还未收录此食物哦~"
                                             }
