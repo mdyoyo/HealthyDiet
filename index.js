@@ -81,6 +81,25 @@ var server = http.createServer(function(req,res){
                         //验证通过 解密msg_encrypt
                         var de_result = cryptor.decrypt(msg_encrypt);
                         console.log(de_result);
+                        var de_result_m = de_result.message;
+                        parseString(de_result_m,function(err,de_result_xml){
+                            console.log("hihihihi");
+                            console.log(de_result_xml);
+                        });
+                        /**
+                         * { message:
+                         * '<xml>
+                         *     <ToUserName><![CDATA[wx1d3765eb45497a18]]></ToUserName>\n
+                         *     <FromUserName><![CDATA[1501210994]]></FromUserName>\n
+                         *     <CreateTime>1465748152</CreateTime>\n
+                         *     <MsgType><![CDATA[event]]></MsgType>\n
+                         *     <AgentID>51</AgentID>\n
+                         *     <Event><![CDATA[click]]></Event>\n
+                         *     <EventKey><![CDATA[V1001_TODAY_MUSIC]]></EventKey>\n
+                         * </xml>',
+                         * id: 'wx1d3765eb45497a18' }
+                         */
+
                     }else{
                         res.end('signature fail');
                     }
