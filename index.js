@@ -123,6 +123,7 @@ var server = http.createServer(function(req,res){
                                     var content = de_result_xml.xml.Content[0];
                                     //TODO 根据content返回相应的热量, 查询数据库吧~~
                                     var reply_xml_tmp = replyTextToUSer_mw(de_result_xml, content);
+                                    console.log(reply_xml_tmp);
                                     //加密xml,生成签名，在生成一个xml,返回给微信
                                     var msg_encypt = cryptor.encrypt(reply_xml_tmp);
                                     var msg_signature = cryptor.getSignature(params.timestamp,params.nonce,msg_encypt);
