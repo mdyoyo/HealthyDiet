@@ -6,8 +6,9 @@ var http = require('http');
 var url = require('url');
 var qs = require('qs');//url参数字符串和参数对象的转换
 
+//连接数据库
 var mongoose = require('mongoose');
-var foodData = require('./model/food_model.js').foodData;
+var Food = require('./model/food_model.js').foodData;
 mongoose.connect('mongodb://123.206.77.116:27017/foods');
 mongoose.connection.on('error',console.error.bind(console,'连接数据库失败'));
 
@@ -145,8 +146,19 @@ var server = http.createServer(function(req,res){
                                 console.log("收到普通消息");//text/image/voice/video/shortvideo/locationlink
                                 if(msgType === 'text'){
                                     console.log("收到文本消息啦");
-                                    var content = de_result_xml.xml.Content[0];
+                                    var content = de_result_xml.xml.Content[0];//食物名称
                                     //TODO 根据content返回相应的热量, 查询数据库吧~~
+                                    var query = {};
+                  //                  var pattern = new RegExp("^.*"+content+".*$");
+                                    query.foodname = new RegExp("^.*"+content+".*$");
+                                    //query['foodname'] = new RegExp(content);
+                                    Food.findOne(query,function(err,food){
+                                        if(err){
+                                            console.log(err);
+                                        }else{
+                                            console.log(food);
+                                        }
+                                    });
                                     var reply_xml_tmp = replyTextToUSer_mw(de_result_xml, content);
                                     console.log(reply_xml_tmp);
                                     //加密xml,生成签名，在生成一个xml,返回给微信
