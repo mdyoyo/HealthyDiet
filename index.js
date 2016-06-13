@@ -6,6 +6,11 @@ var http = require('http');
 var url = require('url');
 var qs = require('qs');//url参数字符串和参数对象的转换
 
+var mongoose = require('mongoose');
+var foodData = require('./model/food_model.js').foodData;
+mongoose.connect('mongodb://123.206.77.116:27017/foods');
+mongoose.connection.on('error',console.error.bind(console,'连接数据库失败'));
+
 var replyTextToUSer_mw = require('./lib/reply.js').replyTextToUSer_mw;
 var replyXMLToWechat = require('./lib/reply.js').replyXMLToWechat;
 var replyArticlesToClick = require('./lib/reply.js').replyArticlesToClick;
