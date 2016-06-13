@@ -108,7 +108,7 @@ var server = http.createServer(function(req,res){
                                     var eventKey =  de_result_xml.xml.EventKey[0];
                                     //使用指南
                                     if(eventKey === 'V3'){
-                                        var replyText= "欢迎关注哦O(∩_∩)O！您可以直接在输入框内，输入食物或者菜名，进行热量的查询，例如苹果、番茄炒蛋等。\n除此之外，您还可以点击我们菜单栏的菜单，会有一些关于减肥养生的分享~~";
+                                        var replyText= "欢迎关注哦O(∩_∩)O！您可以直接在输入框内，输入食物或者菜名，进行热量的查询，例如苹果、土豆等。\n除此之外，您还可以点击我们菜单栏的菜单，会有一些关于减肥养生的分享~~\nps：输入“番茄炒蛋”有惊喜哦~嘻嘻";
                                         var reply_xml_tmp = replyTextToUSer_mw(de_result_xml, replyText);
                                         console.log(reply_xml_tmp);
                                         //加密xml,生成签名，在生成一个xml,返回给微信
@@ -151,6 +151,17 @@ var server = http.createServer(function(req,res){
                                 if(msgType === 'text'){
                                     console.log("收到文本消息啦");
                                     var content = de_result_xml.xml.Content[0];//食物名称
+                                    if(content == '番茄炒蛋'){
+                                        var reply_xml_tmp = replyArticlesToClick(1,de_result_xml);
+                                        console.log(reply_xml_tmp);
+                                        //加密xml,生成签名，在生成一个xml,返回给微信
+                                        var msg_encypt = cryptor.encrypt(reply_xml_tmp);
+                                        var msg_signature = cryptor.getSignature(params.timestamp,params.nonce,msg_encypt);
+                                        var result_replyToWechat = replyXMLToWechat(msg_encypt,msg_signature,params.timestamp,params.nonce);
+                                        console.log("回复文本消息啦");
+                                        console.log(result_replyToWechat);
+                                        res.end(result_replyToWechat);
+                                    }
                                     //根据content返回相应的热量, 查询数据库吧~~
                                     var query = {};
                   //                  var pattern = new RegExp("^.*"+content+".*$");
