@@ -119,9 +119,9 @@ var server = http.createServer(function(req,res){
                                         console.log(result_replyToWechat);
                                         res.end(result_replyToWechat);
                                     }
-                                    //使用指南
+                                    //四季食谱
                                     else{
-                                        var reply_xml_tmp = replyArticlesToClick(1,de_result_xml);
+                                        var reply_xml_tmp = replyArticlesToClick(1,de_result_xml,false);
                                         console.log(reply_xml_tmp);
                                         //加密xml,生成签名，在生成一个xml,返回给微信
                                         var msg_encypt = cryptor.encrypt(reply_xml_tmp);
@@ -152,7 +152,7 @@ var server = http.createServer(function(req,res){
                                     console.log("收到文本消息啦");
                                     var content = de_result_xml.xml.Content[0];//食物名称
                                     if(content == '番茄炒蛋'){
-                                        var reply_xml_tmp = replyArticlesToClick(1,de_result_xml);
+                                        var reply_xml_tmp = replyArticlesToClick(1,de_result_xml,true);
                                         console.log(reply_xml_tmp);
                                         //加密xml,生成签名，在生成一个xml,返回给微信
                                         var msg_encypt = cryptor.encrypt(reply_xml_tmp);
