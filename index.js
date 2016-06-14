@@ -181,11 +181,26 @@ var server = http.createServer(function(req,res){
                                         console.log(result_replyToWechat);
                                         res.end(result_replyToWechat);
                                     }
+
+                                    // 判断QQ表情的正则表达式
+                                    var qqfaceRegex = "/::\\)|/::~|/::B|/::\\||/:8-\\)|/::<|/::$|/::X|/::Z|/::'\\(|/::-\\||/::@|/::P|/::D|/::O|/::\\(|/::\\+|/:--b|/::Q|/::T|/:,@P|/:,@-D|/::d|/:,@o|/::g|/:\\|-\\)|/::!|/::L|/::>|/::,@|/:,@f|/::-S|/:\\?|/:,@x|/:,@@|/::8|/:,@!|/:!!!|/:xx|/:bye|/:wipe|/:dig|/:handclap|/:&-\\(|/:B-\\)|/:<@|/:@>|/::-O|/:>-\\||/:P-\\(|/::'\\||/:X-\\)|/::\\*|/:@x|/:8\\*|/:pd|/:<W>|/:beer|/:basketb|/:oo|/:coffee|/:eat|/:pig|/:rose|/:fade|/:showlove|/:heart|/:break|/:cake|/:li|/:bome|/:kn|/:footb|/:ladybug|/:shit|/:moon|/:sun|/:gift|/:hug|/:strong|/:weak|/:share|/:v|/:@\\)|/:jj|/:@@|/:bad|/:lvu|/:no|/:ok|/:love|/:<L>|/:jump|/:shake|/:<O>|/:circle|/:kotow|/:turn|/:skip|/:oY|/:#-0|/:hiphot|/:kiss|/:<&|/:&>";
+                                    if(qqfaceRegex.test(content)){
+                                        var  replyText = "啊喂，发表情是什么意思！不许捣乱！";
+                                        var reply_xml_tmp = replyTextToUSer_mw(de_result_xml, replyText);
+                                        console.log(reply_xml_tmp);
+                                        //加密xml,生成签名，在生成一个xml,返回给微信
+                                        var msg_encypt = cryptor.encrypt(reply_xml_tmp);
+                                        var msg_signature = cryptor.getSignature(params.timestamp,params.nonce,msg_encypt);
+                                        var result_replyToWechat = replyXMLToWechat(msg_encypt,msg_signature,params.timestamp,params.nonce);
+                                        console.log("回复文本消息啦");
+                                        console.log(result_replyToWechat);
+                                        res.end(result_replyToWechat);
+                                    }
+                                    //query['foodname'] = new RegExp(content);
                                     //根据content返回相应的热量, 查询数据库吧~~
                                     var query = {};
-                  //                  var pattern = new RegExp("^.*"+content+".*$");
+                                    //                  var pattern = new RegExp("^.*"+content+".*$");
                                     query.title = new RegExp("^.*"+content+".*$");
-                                    //query['foodname'] = new RegExp(content);
                                     Food.find(query,function(err,foods){
                                         if(err){
                                             console.log(err);
