@@ -195,41 +195,43 @@ var server = http.createServer(function(req,res){
                                         console.log("回复文本消息啦");
                                         console.log(result_replyToWechat);
                                         res.end(result_replyToWechat);
-                                    }
-                                    //query['foodname'] = new RegExp(content);
-                                    //根据content返回相应的热量, 查询数据库吧~~
-                                    var query = {};
-                                    //                  var pattern = new RegExp("^.*"+content+".*$");
-                                    query.title = new RegExp("^.*"+content+".*$");
-                                    Food.find(query,function(err,foods){
-                                        if(err){
-                                            console.log(err);
-                                        }else{
-                                            console.log(foods);
-                                            var replyText="";
-                                            if(foods.length>0){
-                                                var count = foods.length;
-                                                for(var i=0; i<count; i++){
-                                                    replyText += foods[i].title+"\n"+foods[i].calory+"\n";
-                                                    if(i==9){
-                                                        break;
-                                                    }
-                                                }
-                                                //replyText = food.title+"\n"+food.calory;
+                                    }else{
+                                        //query['foodname'] = new RegExp(content);
+                                        //根据content返回相应的热量, 查询数据库吧~~
+                                        var query = {};
+                                        //var pattern = new RegExp("^.*"+content+".*$");
+                                        query.title = new RegExp("^.*"+content+".*$");
+                                        Food.find(query,function(err,foods){
+                                            if(err){
+                                                console.log(err);
                                             }else{
-                                                replyText = "抱歉，食物库中还未收录此食物哦~"
+                                                console.log(foods);
+                                                var replyText="";
+                                                if(foods.length>0){
+                                                    var count = foods.length;
+                                                    for(var i=0; i<count; i++){
+                                                        replyText += foods[i].title+"\n"+foods[i].calory+"\n";
+                                                        if(i==9){
+                                                            break;
+                                                        }
+                                                    }
+                                                    //replyText = food.title+"\n"+food.calory;
+                                                }else{
+                                                    replyText = "抱歉，食物库中还未收录此食物哦~"
+                                                }
+                                                var reply_xml_tmp = replyTextToUSer_mw(de_result_xml, replyText);
+                                                console.log(reply_xml_tmp);
+                                                //加密xml,生成签名，在生成一个xml,返回给微信
+                                                var msg_encypt = cryptor.encrypt(reply_xml_tmp);
+                                                var msg_signature = cryptor.getSignature(params.timestamp,params.nonce,msg_encypt);
+                                                var result_replyToWechat = replyXMLToWechat(msg_encypt,msg_signature,params.timestamp,params.nonce);
+                                                console.log("回复文本消息啦");
+                                                console.log(result_replyToWechat);
+                                                res.end(result_replyToWechat);
                                             }
-                                            var reply_xml_tmp = replyTextToUSer_mw(de_result_xml, replyText);
-                                            console.log(reply_xml_tmp);
-                                            //加密xml,生成签名，在生成一个xml,返回给微信
-                                            var msg_encypt = cryptor.encrypt(reply_xml_tmp);
-                                            var msg_signature = cryptor.getSignature(params.timestamp,params.nonce,msg_encypt);
-                                            var result_replyToWechat = replyXMLToWechat(msg_encypt,msg_signature,params.timestamp,params.nonce);
-                                            console.log("回复文本消息啦");
-                                            console.log(result_replyToWechat);
-                                            res.end(result_replyToWechat);
-                                        }
-                                    });
+                                        });
+                                    }
+
                                     //var reply_xml_tmp = replyTextToUSer_mw(de_result_xml, content);
                                     //console.log(reply_xml_tmp);
                                     ////加密xml,生成签名，在生成一个xml,返回给微信

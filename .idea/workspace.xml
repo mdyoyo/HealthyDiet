@@ -26,9 +26,11 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.04973357">
-              <caret line="185" column="749" selection-start-line="185" selection-start-column="749" selection-end-line="185" selection-end-column="749" />
-              <folding />
+            <state vertical-scroll-proportion="0.90053284">
+              <caret line="231" column="43" selection-start-line="231" selection-start-column="43" selection-end-line="231" selection-end-column="43" />
+              <folding>
+                <element signature="e#12729#14865#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -87,8 +89,8 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="3" />
-    <option name="y" value="79" />
+    <option name="x" value="8" />
+    <option name="y" value="23" />
     <option name="width" value="1132" />
     <option name="height" value="709" />
   </component>
@@ -234,7 +236,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="3" y="79" width="1132" height="709" extended-state="0" />
+    <frame x="8" y="23" width="1132" height="709" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288364" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -278,7 +280,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#12729#14865#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -294,7 +298,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="122" column="59" selection-start-line="122" selection-start-column="59" selection-end-line="122" selection-end-column="59" />
-          <folding />
+          <folding>
+            <element signature="e#12729#14865#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -339,7 +345,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="122" column="59" selection-start-line="122" selection-start-column="59" selection-end-line="122" selection-end-column="59" />
-          <folding />
+          <folding>
+            <element signature="e#12729#14865#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -392,7 +400,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#12729#14865#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -437,7 +447,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#12729#14865#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -566,9 +578,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.04973357">
-          <caret line="185" column="749" selection-start-line="185" selection-start-column="749" selection-end-line="185" selection-end-column="749" />
-          <folding />
+        <state vertical-scroll-proportion="0.90053284">
+          <caret line="231" column="43" selection-start-line="231" selection-start-column="43" selection-end-line="231" selection-end-column="43" />
+          <folding>
+            <element signature="e#12729#14865#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
