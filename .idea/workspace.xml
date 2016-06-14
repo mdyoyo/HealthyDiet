@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ff71784e-b5ff-43f0-bd8c-f3699205ebcc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.js" afterPath="$PROJECT_DIR$/index.js" />
     </list>
     <ignored path="HealthyDiet.iws" />
@@ -24,20 +23,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="110" column="143" selection-start-line="110" selection-start-column="70" selection-end-line="110" selection-end-column="143" />
+            <state vertical-scroll-proportion="0.45486724">
+              <caret line="153" column="57" selection-start-line="153" selection-start-column="57" selection-end-line="153" selection-end-column="57" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.14867257">
+            <state vertical-scroll-proportion="0.0">
               <caret line="3" column="96" selection-start-line="3" selection-start-column="96" selection-end-line="3" selection-end-column="96" />
               <folding />
             </state>
@@ -75,8 +74,8 @@
         <option value="$PROJECT_DIR$/model/food_model.js" />
         <option value="$PROJECT_DIR$/list.js" />
         <option value="$PROJECT_DIR$/lib/reply.js" />
-        <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/index.js" />
       </list>
     </option>
   </component>
@@ -557,18 +556,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
+    <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="110" column="143" selection-start-line="110" selection-start-column="70" selection-end-line="110" selection-end-column="143" />
+          <caret line="3" column="96" selection-start-line="3" selection-start-column="96" selection-end-line="3" selection-end-column="96" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
+    <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14867257">
-          <caret line="3" column="96" selection-start-line="3" selection-start-column="96" selection-end-line="3" selection-end-column="96" />
+        <state vertical-scroll-proportion="0.45486724">
+          <caret line="153" column="57" selection-start-line="153" selection-start-column="57" selection-end-line="153" selection-end-column="57" />
           <folding />
         </state>
       </provider>

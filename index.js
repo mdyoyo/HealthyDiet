@@ -138,7 +138,7 @@ var server = http.createServer(function(req,res){
 
                                 }else if(eventType ==='subscribe'){
                                     console.log("成员关注事件");
-                                    var replyText = "hi，欢迎你关注哦~";
+                                    var replyText = "hi，欢迎关注哦O(∩_∩)O！您可以直接在输入框内，输入食物或者菜名，进行热量的查询，例如苹果、土豆等。\n除此之外，您还可以点击我们菜单栏的菜单，会有一些关于减肥养生的分享~~\nps：输入“番茄炒蛋”有惊喜哦~嘻嘻";
                                     var reply_xml_tmp = replyTextToUSer_mw(de_result_xml, replyText);
                                     console.log(reply_xml_tmp);
                                     //加密xml,生成签名，在生成一个xml,返回给微信
@@ -150,6 +150,17 @@ var server = http.createServer(function(req,res){
                                     res.end(result_replyToWechat);
                                 }else if(eventType ==='unsubscribe'){
                                     console.log("成员取消关注事件");
+                                }else if(eventType === 'enter_agent'){
+                                    var replyText = "hi~~您可以直接在输入框内，输入食物或者菜名，进行热量的查询，例如苹果、土豆等。\n除此之外，您还可以点击我们菜单栏的菜单，会有一些关于减肥养生的分享~~\nps：输入“番茄炒蛋”有惊喜哦~嘻嘻";
+                                    var reply_xml_tmp = replyTextToUSer_mw(de_result_xml, replyText);
+                                    console.log(reply_xml_tmp);
+                                    //加密xml,生成签名，在生成一个xml,返回给微信
+                                    var msg_encypt = cryptor.encrypt(reply_xml_tmp);
+                                    var msg_signature = cryptor.getSignature(params.timestamp,params.nonce,msg_encypt);
+                                    var result_replyToWechat = replyXMLToWechat(msg_encypt,msg_signature,params.timestamp,params.nonce);
+                                    console.log("回复文本消息啦");
+                                    console.log(result_replyToWechat);
+                                    res.end(result_replyToWechat);
                                 }else{
                                     console.log("其他事件");
                                 }
