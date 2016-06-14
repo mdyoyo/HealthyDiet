@@ -6,10 +6,11 @@ var http = require('http');
 var url = require('url');
 var qs = require('qs');//url参数字符串和参数对象的转换
 
+var db_url = require('./lib/config.js').database;
 //连接数据库
 var mongoose = require('mongoose');
 var Food = require('./model/food_model.js').foodData;
-mongoose.connect('mongodb://123.206.77.116:27017/foods');
+mongoose.connect(db_url);
 mongoose.connection.on('error',console.error.bind(console,'连接数据库失败'));
 
 var replyTextToUSer_mw = require('./lib/reply.js').replyTextToUSer_mw;
@@ -19,6 +20,7 @@ var replyArticlesToClick = require('./lib/reply.js').replyArticlesToClick;
 var WXBizMsgCrypt = require('./lib/WXUtil.js');
 var corpId = require('./lib/config').corpID;
 var corpSecret = require('./lib/config').corpSecret;
+var port = require('./lib/config').port;
 var config = {
     token:'JiCTLRjtUNh9PuPt1no1wCQML1rm',
     encodingAESKey:'ThTmIVioex7wf8m4BnrIMe3d1LfHczHMh53dV1WHlLq',
@@ -297,8 +299,8 @@ var server = http.createServer(function(req,res){
      */
 
 });
-server.listen(1338);
-console.log('server running at port 1338');
+server.listen(port);
+console.log('server running at port'+port);
 
 
 

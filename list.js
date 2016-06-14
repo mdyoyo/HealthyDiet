@@ -1,15 +1,16 @@
-
+var corpId = require('./lib/config').corpID;
+var corpSecret = require('./lib/config').corpSecret;
 var request = require('request');
-// 成员点击click类型按钮后，
-// 微信服务器会通过消息接口推送消息类型为event的结构给开发者（参考消息接口指南），
-// 并且带上按钮中开发者填写的key值，开发者可以通过自定义的key值与成员进行交互；
-
-//function createList() {
-
+//创建菜单
+request("https://qyapi.weixin.qq.com/cgi-bin/gettoken?" +
+    "corpid=" + corpId +
+    "&corpsecret=" + corpSecret,function(error,response,data){
+    var result = JSON.parse(data);
+    var token = result.access_token;
     var options2 = {
         headers: {"Connection": "close"},
         url: 'https://qyapi.weixin.qq.com/cgi-bin/menu/create?' +
-        'access_token=cWQUFhDuLpcB-CP-fbgZvezcwfSTzqDxo5K_qCQKhZTFmrOQ02TSBClIGzqDFSx-' +
+        'access_token='+token +
         '&agentid=51',
         method: 'POST',
         json: true,//请求和回发的数据自动转变成了 json 对象
@@ -75,8 +76,5 @@ var request = require('request');
         }
     }
     request(options2, callback);
-//}
-//
-//module.exports = {
-//    createList : createList
-//};
+
+});
