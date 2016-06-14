@@ -138,8 +138,16 @@ var server = http.createServer(function(req,res){
 
                                 }else if(eventType ==='subscribe'){
                                     console.log("成员关注事件");
-                                    //TODO "hi，欢迎你关注哦~"
-
+                                    var replyText = "hi，欢迎你关注哦~";
+                                    var reply_xml_tmp = replyTextToUSer_mw(de_result_xml, replyText);
+                                    console.log(reply_xml_tmp);
+                                    //加密xml,生成签名，在生成一个xml,返回给微信
+                                    var msg_encypt = cryptor.encrypt(reply_xml_tmp);
+                                    var msg_signature = cryptor.getSignature(params.timestamp,params.nonce,msg_encypt);
+                                    var result_replyToWechat = replyXMLToWechat(msg_encypt,msg_signature,params.timestamp,params.nonce);
+                                    console.log("回复文本消息啦");
+                                    console.log(result_replyToWechat);
+                                    res.end(result_replyToWechat);
                                 }else if(eventType ==='unsubscribe'){
                                     console.log("成员取消关注事件");
                                 }else{
@@ -177,6 +185,9 @@ var server = http.createServer(function(req,res){
                                                 var count = foods.length;
                                                 for(var i=0; i<count; i++){
                                                     replyText += foods[i].title+"\n"+foods[i].calory+"\n";
+                                                    if(i==9){
+                                                        break;
+                                                    }
                                                 }
                                                 //replyText = food.title+"\n"+food.calory;
                                             }else{
@@ -204,6 +215,16 @@ var server = http.createServer(function(req,res){
                                     //res.end(result_replyToWechat);
                                 }else{
                                     console.log("收到不是文本的消息啦");
+                                    var replyText = "咦，暂时只支持文字查询哦~~(*^__^*) ";
+                                    var reply_xml_tmp = replyTextToUSer_mw(de_result_xml, replyText);
+                                    console.log(reply_xml_tmp);
+                                    //加密xml,生成签名，在生成一个xml,返回给微信
+                                    var msg_encypt = cryptor.encrypt(reply_xml_tmp);
+                                    var msg_signature = cryptor.getSignature(params.timestamp,params.nonce,msg_encypt);
+                                    var result_replyToWechat = replyXMLToWechat(msg_encypt,msg_signature,params.timestamp,params.nonce);
+                                    console.log("回复文本消息啦");
+                                    console.log(result_replyToWechat);
+                                    res.end(result_replyToWechat);
                                 }
                             }
                         });
