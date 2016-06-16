@@ -59,7 +59,7 @@ var server = http.createServer(function(req,res){
         var errCode = cryptor.verifyURL(params.msg_signature,params.timestamp,params.nonce,echostr);
         console.log(errCode);
         if(errCode != 0){
-            res.end(fail);
+            res.end('fail');
         }
         /**
          * { message: '3617532078790236155', id: 'wx1d3765eb45497a18' }
@@ -305,7 +305,7 @@ console.log('server running at port'+port);
 
 
 
-/*定时器*/
+/*定时器
 later.date.localTime();
 console.log("Now_____"+ new Date());
 
@@ -343,5 +343,5 @@ function test(){
     req.on('error', function (e) {
         console.log('ERROR: ' + e.message);
     });
-}
+}*/
 
